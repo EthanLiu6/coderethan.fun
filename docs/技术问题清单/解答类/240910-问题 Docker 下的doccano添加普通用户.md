@@ -12,7 +12,7 @@ docker restart doccano
 1.2 进入Doccano容器
 
 ```sh
-docker exec -it docker bash
+docker exec -it doccano bash
 ```
 
 1.3 配置（添加）超级管理员或者普通管理员账号

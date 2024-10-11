@@ -10,7 +10,7 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/imgs/home-page-logo.svg' }], // 设置 favicon
   ],
   lang: 'zh-CN',
-  appearance: "dark",
+  // appearance: "dark", //考虑到阅读者的护眼和博客的简约，不搞那些绚丽了
   srcExclude: ['/README.md'],
 
   // 自动侧边栏配置
@@ -48,7 +48,7 @@ export default defineConfig({
     logo: '/imgs/home-page-logo.svg',
     outline: {
       label: '本文目录', // 将 "On This Page" 改为 "目录"
-      level: [2, 3]
+      level: [2, 4]
     },
     // 启用本地搜索
     search: {
@@ -134,7 +134,13 @@ export default defineConfig({
         items: [
           { text: '站点更新', link: '/update/更新日志' },
           { text: '问题清单', link: '/技术问题清单/' },
-          { text: '个人日常', link: 'https://EthanLiu6.github.io' },
+        ]
+      },
+      {
+        text: '感悟和日常',
+        items: [
+          { text: '站长感悟', link: '/我的感悟/' },
+          { text: '站长日常', link: 'https://EthanLiu6.github.io' },
         ]
       },
     ], // end导航栏

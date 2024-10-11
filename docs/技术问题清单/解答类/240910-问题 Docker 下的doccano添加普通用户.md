@@ -1,29 +1,29 @@
-### 240910-问题 Docker下的doccano添加普通用户
+## 240910-问题 Docker下的doccano添加普通用户
 
 ::: tip 整体实现方式
 通过不断排查发现，24年最新版本的有一些bug，无法创建普通用户，只能创建超管然后将别的超管作为员工添加到项目中。
 :::
 
-#### 1. 操作步骤
+### 1. 操作步骤
 
-#### 1.1 启动docker的doccano
+### 1.1 启动docker的doccano
 
 ```bash
 # 需要提前创建好doccano服务才行（docker run …………）
 docker restart doccano
 ```
 
-#### 1.2 进入Doccano容器
+### 1.2 进入Doccano容器
 
 ```sh
 docker exec -it doccano bash
 ```
 
-#### 1.3 配置（添加）超级管理员或者普通管理员账号
+### 1.3 配置（添加）超级管理员或者普通管理员账号
 
 > 因为doccano后端是采用Django框架搭建的，可以直接使用 manage.py 进行创建账户
 
-##### 1.3.1 **管理员账户**
+#### 1.3.1 **管理员账户**
 
 ```
 # python manage.py createuser --username <用户名> --email <邮箱> --password <密码>
@@ -44,7 +44,7 @@ python manage.py createuser --username demo  --password wazg123456
 
 <img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20241010220352067.png" alt="image-20241010220352067" style="zoom:50%;" />
 
-##### 1.3.2 **普通用户账户**
+#### 1.3.2 **普通用户账户**
 
 我使用createuser 发现没了，然后查看manage.py help
 

@@ -11,13 +11,13 @@ hero:
   
   actions:
     - theme: brand
-      text: 站点使用指南
+      text: 站点使用指南🔎
       link: /guide/
     - theme: alt
-      text: 日常博客
+      text: 日常博客📔
       link: https://EthanLiu6.github.io
     - theme: alt
-      text: 联系站长
+      text: 站长邮箱📮
       link: mailto:16693226842@163.com
 
 features:

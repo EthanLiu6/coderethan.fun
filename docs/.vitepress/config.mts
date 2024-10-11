@@ -228,7 +228,7 @@ export default defineConfig({
 
     // 页脚配置
     footer: {
-      message: '基于 MIT 许可发布',
+      message: '备案号: <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2024103116号</a>',
       copyright: '版权所有 © 2024 Ethan.Liu'
     },
 

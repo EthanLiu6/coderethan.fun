@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.C9NVOr0y.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"我的感悟/2025/index.md","filePath":"我的感悟/2025/index.md","lastUpdated":null}'),n={name:"我的感悟/2025/index.md"};function r(o,s,d,c,i,p){return a(),t("div")}const m=e(n,[["render",r]]);export{l as __pageData,m as default};

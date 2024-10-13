@@ -77,6 +77,16 @@ export default defineConfig({
         text: '编程技术',  // 合并J为一个大类
         items: [
           {
+            text: '计算机知识',
+            items: [
+              { text: '数据结构', link: '/IT-learning/408知识/数据结构/' },
+              { text: '计算机网络', link: '/IT-learning/408知识/计算机网络/' },
+              { text: '计算机组成原理', link: '/IT-learning/408知识/计算机组成原理/' },
+              { text: '操作系统', link: '/IT-learning/408知识/操作系统/' },
+              { text: '计算机碎片知识', link: '/IT-learning/408知识/碎片知识/' },
+            ]
+          },
+          {
             text: 'Java后端',  // 小模块
             items: [
               { text: 'JavaSE', link: '/IT-learning/Java/java-se' },
@@ -97,16 +107,6 @@ export default defineConfig({
             items: [
               { text: 'Docker技术', link: '/IT-learning/Linux/Docker/' },
               { text: 'Shell脚本', link: '/IT-learning//Linux/Shell/' },
-            ]
-          },
-          {
-            text: '计算机知识',
-            items: [
-              { text: '数据结构', link: '/IT-learning/408知识/数据结构/' },
-              { text: '计算机网络', link: '/IT-learning/408知识/计算机网络/' },
-              { text: '计算机组成原理', link: '/IT-learning/408知识/计算机组成原理/' },
-              { text: '操作系统', link: '/IT-learning/408知识/操作系统/' },
-              { text: '计算机碎片知识', link: '/IT-learning/408知识/碎片知识/' },
             ]
           },
         ]

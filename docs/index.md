@@ -17,6 +17,9 @@ hero:
       text: 日常博客📔
       link: https://EthanLiu6.github.io
     - theme: alt
+      text: 功过格🔄
+      link: /功过格/ 
+    - theme: alt
       text: 站长邮箱📮
       link: mailto:16693226842@163.com
 

@@ -63,3 +63,11 @@
         --vp-home-hero-image-filter: blur(68px);
     }
 }
+
+/* 全局两端对齐 */
+p {
+    text-align: justify;
+}
+h1 {
+    text-align: center;
+  }

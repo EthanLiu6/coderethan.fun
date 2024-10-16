@@ -26,8 +26,8 @@ docker exec -it doccano bash
 #### 1.3.1 **管理员账户**
 
 ```
-# python manage.py createuser --username <用户名> --email <邮箱> --password <密码>
-python manage.py createuser --username demo  --password wazg123456
+# python manage.py createsuperuser --username <用户名> --email <邮箱> --password <密码>
+python manage.py createsuperuser --username demo  --password wazg123456
 ```
 
 这里我用我的远程win系统给大家演示
@@ -137,6 +137,13 @@ Available subcommands:
 
 
 由于前面我看的manage.py的api还有一个`create_admin`，我尝试创建，最终效果与`createsuperuser`一模一样，只是create_admin需要添加名称和密码，createsuperuser的使用前面讲过了，这里展示create_admin
+
+```python
+#python manage.py create_admin --username <成员名> --password <成员密码>
+python manage.py create_admin --username demo --password wazg123456
+```
+
+
 
 ![image-20241010231213507](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20241010231213507.png)
 

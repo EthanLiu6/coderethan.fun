@@ -22,7 +22,7 @@ PyTorch is a free, open-source tool developed by Facebook that helps people buil
 
 PyTorch uses **dynamic computation graphs**, meaning that it builds the graph of calculations step-by-step as you run the code. This makes it easy to try out new ideas, change the model, and find mistakes in the code while you’re working.
 
-![img](/Users/ethan.liu/Downloads/torch动态图.gif)
+![img](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/torch%E5%8A%A8%E6%80%81%E5%9B%BE.gif)
 
 ### 2.2. **Autograd (Automatic Gradient Calculation)**
 
@@ -72,6 +72,7 @@ Here’s a simple example of building a neural network in PyTorch:
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import time 
 
 # Define a simple neural network
 class SimpleNN(nn.Module):
@@ -96,24 +97,31 @@ optimizer = optim.SGD(model.parameters(), lr=0.01)
 inputs = torch.randn(32, 784)
 labels = torch.randint(0, 10, (32,))
 
-# Forward pass and calculate loss
-outputs = model(inputs)
-loss = criterion(outputs, labels)
-
-# Backward pass and optimize
-optimizer.zero_grad()
-loss.backward()
-optimizer.step()
-
-print(f"Loss: {loss.item()}")
+# Training loop
+num_epochs = 25  # Set the number of training epochs
+for epoch in range(num_epochs):
+    # Forward pass and calculate loss
+    outputs = model(inputs)
+    loss = criterion(outputs, labels)
+    
+    # Backward pass and optimize
+    optimizer.zero_grad()  # Reset gradients to zero
+    loss.backward()        # Compute gradients
+    optimizer.step()       # Update parameters
+    
+    # Print loss for each epoch
+    print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item()}")
+    
+    time.sleep(0.3)
 ```
 
  **Explanation:**
 
 - This code creates a simple neural network with three layers.
-- It uses random data to train the model.
-- The system calculates the loss (how wrong the model is) and then updates the model’s parameters automatically using **autograd**.
-
+- Training Loop: A training loop is added, which runs for a specified number of epochs (num_epochs = 100). Each epoch represents one full pass through the dataset.
+- Loss Printing: After each epoch, the current loss is printed to track how well the model is learning.
+- Zero Gradients: optimizer.zero_grad() ensures the gradients are reset before backpropagation to avoid accumulation.
+- Backward and Step: loss.backward() computes the gradients, and optimizer.step() updates the model's parameters.
 ## 5. Conclusion
 
 PyTorch is a powerful and easy-to-use tool for building AI models, especially for deep learning. It is widely used in both research and industry due to its flexibility and strong community support. Whether you’re just starting out or working on advanced AI projects, PyTorch makes deep learning more accessible.

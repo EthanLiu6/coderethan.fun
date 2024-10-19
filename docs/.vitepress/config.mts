@@ -234,8 +234,8 @@ export default defineConfig({
 
     // 页脚配置
     footer: {
-      message: '备案号: <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2024103116号</a>',
-      copyright: '版权所有 © 2024 Ethan.Liu'
+      message: '<center>备案号: <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2024103116号</a></center>',
+      copyright: '<center>版权所有 © 2024-present  <a href="mailto:16693226842@163.com" target="_blank">Ethan.Liu</a></center>'
     },
 
     // 编辑链接配置

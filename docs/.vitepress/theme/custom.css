@@ -72,3 +72,33 @@ p {
 h1 {
     text-align: center;
 }
+
+/* 页脚的全局样式 */
+.VPFooter {
+    display: flex;
+    flex-direction: column;
+    /* 垂直排列内容 */
+    align-items: center;
+    /* 水平居中 */
+    justify-content: center;
+    /* 垂直居中 */
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 14px;
+    /* 可根据需要调整 */
+    background-color: #f8f8f8;
+    /* 如果想要给页脚背景加颜色，选填 */
+}
+
+.VPFooter a {
+    color: var(--color1);
+    /* 链接颜色，可以根据需要调整 */
+    text-decoration: none;
+    /* 去掉链接下划线 */
+}
+
+.VPFooter a:hover {
+    text-decoration: underline;
+    /* 鼠标悬停时添加下划线 */
+}

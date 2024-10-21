@@ -72,13 +72,7 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/' },
       { text: '博客指南', link: '/guide/' },
-      {
-        text: '生活与算法',
-        items: [
-          { text: '生活与算法', link: '/生活与算法/' }
-        ]
-      },
-
+      { text: '生活与算法', link: '/生活与算法/' },
       {
         text: '编程技术',  // 合并J为一个大类
         items: [

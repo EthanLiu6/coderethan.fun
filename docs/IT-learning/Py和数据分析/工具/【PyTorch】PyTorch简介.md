@@ -1,9 +1,3 @@
----
-Title: Introduction to PyTorch
----
-
-
-
 # Introduction to PyTorch
 
 ::: tip 用途

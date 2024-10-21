@@ -95,9 +95,14 @@ export default defineConfig({
             ]
           },
           {
+            text: '生活与算法',
+            items: [
+              { text: '生活与算法', link: '/IT-learning/生活与算法/' }
+            ]
+          },
+          {
             text: 'Py&数据分析',  // 小模块
             items: [
-              { text: '算法', link: '/IT-learning/Py和数据分析/算法/' },
               { text: '数据分析', link: '/IT-learning/Py和数据分析/数据分析/' },
               { text: '工具', link: '/IT-learning/Py和数据分析/工具/' },
             ]

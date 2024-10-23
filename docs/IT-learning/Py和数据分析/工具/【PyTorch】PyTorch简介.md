@@ -112,10 +112,10 @@ for epoch in range(num_epochs):
  **Explanation:**
 
 - This code creates a simple neural network with three layers.
-- Training Loop: A training loop is added, which runs for a specified number of epochs (num_epochs = 100). Each epoch represents one full pass through the dataset.
+- Training Loop: A training loop is added, which runs for a specified number of epochs (num_epochs = 25). Each epoch represents one full pass through the dataset.
 - Loss Printing: After each epoch, the current loss is printed to track how well the model is learning.
 - Zero Gradients: optimizer.zero_grad() ensures the gradients are reset before backpropagation to avoid accumulation.
 - Backward and Step: loss.backward() computes the gradients, and optimizer.step() updates the model's parameters.
 ## 5. Conclusion
 
-PyTorch is a powerful and easy-to-use tool for building AI models, especially for deep learning. It is widely used in both research and industry due to its flexibility and strong community support. Whether you’re just starting out or working on advanced AI projects, PyTorch makes deep learning more accessible.
+In conclusion, PyTorch stands out as a leading framework for deep learning due to its flexibility, user-friendliness, and active community support. It is particularly favored in academic research but is also making significant inroads into industry applications. As the deep learning landscape continues to evolve, PyTorch is well-positioned to remain a key player, empowering users to innovate and advance the field.

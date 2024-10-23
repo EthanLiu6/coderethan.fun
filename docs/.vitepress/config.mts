@@ -228,7 +228,7 @@ export default defineConfig({
      */
 
     sidebar: {
-
+      
     },
 
     // 页脚配置

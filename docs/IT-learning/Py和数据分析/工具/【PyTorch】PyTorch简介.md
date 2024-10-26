@@ -38,11 +38,9 @@ PyTorch has many **extra tools** to help with different kinds of tasks.**TorchVi
 - **TorchText** simplifies natural language processing (NLP) by offering text datasets, pre-trained word embeddings, and tools for processing raw text data for tasks such as sentiment analysis and text classification.
 -  **TorchAudio** supports audio and speech-related tasks, providing pre-trained models, audio transformations, and datasets for tasks like speech recognition and audio classification. Together, these libraries enhance PyTorch’s flexibility across different types of machine learning projects.
 
-## 3. Where is PyTorch Used?
+## 3. The Application Domains of PyTorch
 
 ### 3.1. **Research**
-
-3.1 Research
 
 Owing to its flexibility, PyTorch enjoys great popularity among researchers, enabling them to test new ideas effortlessly. It is extensively employed in cutting-edge AI fields such as language models, image recognition, and reinforcement learning.
 

@@ -104,8 +104,10 @@ export default defineConfig({
           {
             text: 'Linux技术',  // 小模块
             items: [
-              { text: 'Docker技术', link: '/IT-learning/Linux/Docker/' },
-              { text: 'Shell脚本', link: '/IT-learning//Linux/Shell/' },
+              { text: 'Linux基础', link: '/IT-learning/Linux/01.Linux基础' },
+              { text: 'Shell脚本', link: '/IT-learning/Linux/02.Shell' },
+              { text: 'MPI并行计算', link: '/IT-learning/Linux/03.MPI并行计算' },
+              { text: 'Docker技术', link: '/IT-learning/Linux/04.Docker' },
             ]
           },
         ]
@@ -124,7 +126,7 @@ export default defineConfig({
         text: '求职面试',
         items: [
           { text: 'Java面经', link: '/面试求职/Java面经/' },
-          { text: '场景算法', link: '/面试求职/场景算法/' },
+          { text: '场景问题', link: '/面试求职/场景问题/' },
           { text: '经验分享', link: '/面试求职/经验分享/' },
         ],
       },

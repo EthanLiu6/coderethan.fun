@@ -76,43 +76,12 @@ export default defineConfig({
       {
         text: '编程技术',  // 合并J为一个大类
         items: [
-          {
-            text: '计算机知识',
-            items: [
-              { text: '数据结构', link: '/IT-learning/408知识/数据结构/' },
-              { text: '计算机网络', link: '/IT-learning/408知识/计算机网络/' },
-              { text: '计算机组成原理', link: '/IT-learning/408知识/计算机组成原理/' },
-              { text: '操作系统', link: '/IT-learning/408知识/操作系统/' },
-              { text: '计算机碎片知识', link: '/IT-learning/408知识/碎片知识/' },
-            ]
-          },
-          {
-            text: 'Java后端',  // 小模块
-            items: [
-              { text: 'JavaSE', link: '/IT-learning/Java/java-se' },
-              { text: 'JavaWeb', link: '/IT-learning/Java/java-web' },
-              { text: 'SSM', link: '/IT-learning/Java/ssm' },
-            ]
-          },
-          {
-            text: 'Py&数据分析',  // 小模块
-            items: [
-              { text: '数据分析', link: '/IT-learning/Py和数据分析/数据分析/' },
-              { text: '工具', link: '/IT-learning/Py和数据分析/工具/' },
-            ]
-          },
-          {
-            text: 'Linux技术',  // 小模块
-            items: [
-              { text: 'Linux基础', link: '/IT-learning/Linux/01.Linux基础' },
-              { text: 'Shell脚本', link: '/IT-learning/Linux/02.Shell' },
-              { text: 'MPI并行计算', link: '/IT-learning/Linux/03.MPI并行计算' },
-              { text: 'Docker技术', link: '/IT-learning/Linux/04.Docker' },
-            ]
-          },
+          { text: '计算机知识', link: '/IT-learning/408知识/'},
+          { text: 'Java后端', link: '/IT-learning/Java/'},
+          { text: 'Py&数据分析', link: '/IT-learning/Py和数据分析/'},
+          { text: 'Linux技术',  link: '/IT-learning/Linux/'},
         ]
       },
-
 
       {
         text: '自我提升',

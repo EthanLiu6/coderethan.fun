@@ -8,6 +8,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.24.3",
     "vite-plugin-vitepress-auto-sidebar": "^1.7.0"
   }
 }

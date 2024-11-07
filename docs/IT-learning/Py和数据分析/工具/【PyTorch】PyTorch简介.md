@@ -60,6 +60,7 @@ A large number of universities and online courses adopt PyTorch to teach deep le
 Link to [**PyTorch official website**](https://pytorch.org/).
 
 ### 4.2 Basic Framework
+> test host: 118.24.78.164
 
 Here’s a simple example of building a neural network in PyTorch:
 

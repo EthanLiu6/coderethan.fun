@@ -1,6 +1,94 @@
 import { defineConfig } from 'vitepress'
 import AutoSidebar from "vite-plugin-vitepress-auto-sidebar";
+import markdownItKatex from 'markdown-it-katex'
 
+const customElements = [
+  'math',
+  'maction',
+  'maligngroup',
+  'malignmark',
+  'menclose',
+  'merror',
+  'mfenced',
+  'mfrac',
+  'mi',
+  'mlongdiv',
+  'mmultiscripts',
+  'mn',
+  'mo',
+  'mover',
+  'mpadded',
+  'mphantom',
+  'mroot',
+  'mrow',
+  'ms',
+  'mscarries',
+  'mscarry',
+  'mscarries',
+  'msgroup',
+  'mstack',
+  'mlongdiv',
+  'msline',
+  'mstack',
+  'mspace',
+  'msqrt',
+  'msrow',
+  'mstack',
+  'mstack',
+  'mstyle',
+  'msub',
+  'msup',
+  'msubsup',
+  'mtable',
+  'mtd',
+  'mtext',
+  'mtr',
+  'munder',
+  'munderover',
+  'semantics',
+  'math',
+  'mi',
+  'mn',
+  'mo',
+  'ms',
+  'mspace',
+  'mtext',
+  'menclose',
+  'merror',
+  'mfenced',
+  'mfrac',
+  'mpadded',
+  'mphantom',
+  'mroot',
+  'mrow',
+  'msqrt',
+  'mstyle',
+  'mmultiscripts',
+  'mover',
+  'mprescripts',
+  'msub',
+  'msubsup',
+  'msup',
+  'munder',
+  'munderover',
+  'none',
+  'maligngroup',
+  'malignmark',
+  'mtable',
+  'mtd',
+  'mtr',
+  'mlongdiv',
+  'mscarries',
+  'mscarry',
+  'msgroup',
+  'msline',
+  'msrow',
+  'mstack',
+  'maction',
+  'semantics',
+  'annotation',
+  'annotation-xml'
+]
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -8,7 +96,9 @@ export default defineConfig({
   description: "一个关于Java后端、py数据分析、Linux技术、计算机知识的学习站点",
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/imgs/home-page-logo.svg' }], // 设置 favicon
+    ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css', crossorigin: '' }]  // 引入Katex
   ],
+
   lang: 'zh-CN',
   // appearance: "dark", //考虑到阅读者的护眼和博客的简约，不搞那些绚丽了
   srcExclude: ['/README.md'],
@@ -40,6 +130,20 @@ export default defineConfig({
         // see option document below
       }),
     ],
+  },
+
+  // Katex
+  markdown: {
+    config: (md) => {
+      md.use(markdownItKatex)
+    }
+  },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => customElements.includes(tag)
+      }
+    }
   },
 
   themeConfig: {
@@ -80,6 +184,7 @@ export default defineConfig({
           { text: 'Java后端', link: '/IT-learning/Java/'},
           { text: 'Py&数据分析', link: '/IT-learning/Py和数据分析/'},
           { text: 'Linux技术',  link: '/IT-learning/Linux/'},
+          { text: '计算机图形学',  link: '/IT-learning/计算机图形学/'},
         ]
       },
 

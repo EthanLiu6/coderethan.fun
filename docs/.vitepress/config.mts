@@ -309,7 +309,7 @@ export default defineConfig({
 
     // 页脚配置
     footer: {
-      message: '备案号: <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2024103116号</a>',
+      message: 'ICP备案号: <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2024103116号</a><br>公安备案号: <a href="https://beian.mps.gov.cn/#/query/webSearch?code=51012202001928" rel="noreferrer" target="_blank">川公网安备51012202001928</a>',
       copyright: '版权所有 © 2024-present  <a href="mailto:16693226842@163.com" target="_blank">Ethan.Liu</a>'
     },
 

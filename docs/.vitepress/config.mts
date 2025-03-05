@@ -103,6 +103,9 @@ export default defineConfig({
   // appearance: "dark", //考虑到阅读者的护眼和博客的简约，不搞那些绚丽了
   srcExclude: ['/README.md'],
 
+  // DeadLinks ignore
+  // ignoreDeadLinks: true,
+
   // 自动侧边栏配置
   vite: {
     plugins: [
@@ -177,6 +180,7 @@ export default defineConfig({
       { text: '主页', link: '/' },
       { text: '博客指南', link: '/guide/' },
       { text: '生活与算法', link: '/生活与算法/' },
+      { text: 'AI', link: '/AI/' },
       {
         text: '计算机学科内容',  // 合并J为一个大类
         items: [

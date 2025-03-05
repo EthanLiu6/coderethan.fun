@@ -8,8 +8,10 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
     "markdown-it-katex": "^2.0.3",
-    "rollup": "^4.25.0",
+    "rollup": "^4.34.9",
     "vite-plugin-vitepress-auto-sidebar": "^1.7.0"
   }
 }

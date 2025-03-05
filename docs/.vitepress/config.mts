@@ -93,7 +93,7 @@ const customElements = [
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "码医森",
-  description: "一个关于Java后端、py数据分析、Linux技术、计算机知识的学习站点",
+  description: "计算机知识的学习站点",
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/imgs/home-page-logo.svg' }], // 设置 favicon
     ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css', crossorigin: '' }]  // 引入Katex
@@ -178,11 +178,10 @@ export default defineConfig({
       { text: '博客指南', link: '/guide/' },
       { text: '生活与算法', link: '/生活与算法/' },
       {
-        text: '编程技术',  // 合并J为一个大类
+        text: '计算机学科内容',  // 合并J为一个大类
         items: [
           { text: '计算机知识', link: '/IT-learning/408知识/'},
           { text: 'Java后端', link: '/IT-learning/Java/'},
-          { text: 'Py&数据分析', link: '/IT-learning/Py和数据分析/'},
           { text: 'Linux技术',  link: '/IT-learning/Linux/'},
           { text: '计算机图形学',  link: '/IT-learning/计算机图形学/'},
         ]
@@ -191,8 +190,7 @@ export default defineConfig({
       {
         text: '自我提升',
         items: [
-          { text: '冥想练习', link: '/improve/冥想练习/' },
-          { text: '学科交叉', link: '/improve/学科交叉/' },
+          { text: '阅读', link: '/improve/阅读/' },
           { text: '金融投资', link: '/improve/金融投资/' },
         ]
       },
@@ -202,6 +200,7 @@ export default defineConfig({
           { text: 'Java面经', link: '/面试求职/Java面经/' },
           { text: '场景问题', link: '/面试求职/场景问题/' },
           { text: '经验分享', link: '/面试求职/经验分享/' },
+          { text: '算法岗', link: '/面试求职/算法岗/' },
         ],
       },
       {
@@ -215,7 +214,7 @@ export default defineConfig({
         text: '感悟和日常',
         items: [
           { text: '站长感悟', link: '/我的感悟/' },
-          { text: '站长日常', link: 'https://EthanLiu6.github.io' },
+          { text: '站长旧版博客', link: 'https://EthanLiu6.github.io' },
         ]
       },
     ], // end导航栏

@@ -24,4 +24,4 @@
 
 [CoderEthan](https://www.coderethan.fun) 是一个由VitePress构建的静态网页
 
-版权所有 © 2024 [Ethan.Liu](https://space.bilibili.com/1327099977)
+版权所有 © 2024-Present [Ethan.Liu](https://space.bilibili.com/1327099977)

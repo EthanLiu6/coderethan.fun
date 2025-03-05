@@ -14,11 +14,8 @@ hero:
       text: 站点使用指南🔎
       link: /guide/
     - theme: alt
-      text: 日常博客📔
-      link: https://EthanLiu6.github.io
-    - theme: alt
-      text: 功过格🔄
-      link: /功过格/ 
+      text: 旧版博客📔
+      link: https://EthanLiu6.github.io 
     - theme: alt
       text: 站长邮箱📮
       link: mailto:16693226842@163.com
@@ -27,18 +24,18 @@ features:
   - icon:
       src: /icons/learn.svg
     title: IT学习
-    details: 涵盖各类计算机知识体系。408知识点、Java后端、Py数据分析、人工智能、云原生、Linux等
+    details: 涵盖各类计算机知识体系。408知识点、Java后端、Linux等
     link: '/IT-learning/'
   - icon: 
       src: /icons/improve.svg
     title: 自我提升
-    details: 除了IT，还有一些更nice的模块。比如冥想锻炼、各行各业的分析等
+    details: 除了IT，还有一些更nice的模块。比如投资, 阅读等
     link: '/improve/'
   - icon: 
       src: /icons/explore.svg
-    title: 探索未知
-    details: 对三观的不断探索，包含心理学、神经科学、哲学、量子力学等的学习和探索；对当下热点的分析。
-    link: '/explore/'
+    title: 人工智能
+    details: 算法学习, 高性能, 对当下热点的分析。
+    link: '/AI/'
 ---
 
 <style>

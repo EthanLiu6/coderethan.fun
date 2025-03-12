@@ -1,5 +1,5 @@
-# Deep_Learning_Theroy
-Summary of deep learning theory
+# Deep Learning Theroy
+Summary of deep learning theory<br>
 总共47个章节，为了阅读美观，去掉的对应的文件夹，直接整理成文档内容（按序）
 ```shell
 01-feedforward_network/

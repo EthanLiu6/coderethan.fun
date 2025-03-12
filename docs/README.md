@@ -2,13 +2,13 @@
 
 >  关于Ethan博客介绍
 
-## 主页:house:
+## 主页:
 
 ![image-20241023181446284](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20241023181446284.png)
 
 
 
-## 站点大纲:eyes:
+## 站点大纲:
 
 ![image-20241023181408469](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20241023181408469.png)
 

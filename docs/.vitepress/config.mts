@@ -185,6 +185,7 @@ export default defineConfig({
         text: '计算机学科内容',  // 合并J为一个大类
         items: [
           { text: '计算机知识', link: '/IT-learning/408知识/'},
+          { text: 'C++基础',  link: '/IT-learning/c++基础/'},
           { text: 'Java后端', link: '/IT-learning/Java/'},
           { text: 'Linux技术',  link: '/IT-learning/Linux/'},
           { text: '计算机图形学',  link: '/IT-learning/计算机图形学/'},
@@ -306,9 +307,6 @@ export default defineConfig({
      * 
      */
 
-    sidebar: {
-      
-    },
 
     // 页脚配置
     footer: {

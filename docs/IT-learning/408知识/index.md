@@ -1,6 +1,7 @@
 # 408知识
-## [数据结构](./操作系统/)
-## [计算机网络](./计算机网络/)
-## [计算机组成原理](./计算机组成原理/)
-## [操作系统](./操作系统/)
-## [碎片知识](./碎片知识/)
+> 包含以下内容
+## [DS]数据结构(Data Structures)
+## [CN]计算机网络(Computer Networks)
+## [CO]计算机组成原理(Computer Organization)
+## [OS]操作系统(Operating Systems)
+## [OR]碎片知识(Other)

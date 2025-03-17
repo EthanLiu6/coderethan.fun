@@ -180,7 +180,14 @@ export default defineConfig({
       { text: '主页', link: '/' },
       { text: '博客指南', link: '/guide/' },
       { text: '生活与算法', link: '/生活与算法/' },
-      { text: 'AI', link: '/AI/' },
+      {text: 'AI',
+        items: [
+          {text: 'DL基础理论', link: '/AI/deep_learning_theory/'},
+          {text: 'Transformer系列', link: '/AI/Transformer/'}
+        ]
+      },
+      // { text: 'AI', link: '/AI/' },
+
       {
         text: '计算机学科内容',  // 合并J为一个大类
         items: [

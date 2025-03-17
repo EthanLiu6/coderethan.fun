@@ -1,6 +1,6 @@
 # 一. DL_Base_Notes
 
-# 1. 🌟🌟🌟🌟🌟Normalization
+## 1. 🌟🌟🌟🌟🌟Normalization
 
 Batch Norm，Layer Norm，Instance Norm，Group Norm
 $$
@@ -10,72 +10,66 @@ $$
 
 **思考：在训练和推理时有何不同？？？**
 
-# 2. 🌟🌟🌟Activation
+## 2. 🌟🌟🌟Activation
 
-## 2.1 Non-linear Activations 的两种类型
+### 2.1 Non-linear Activations 的两种类型
 
 一种是逐元素操作（Element wise 或者Point wise），eg:ReLU,Sigmoid,Tanh,等，另一种是操作对象（元素）之间具有相关性，eg.Softmax
 
-## 2. 2
+### 2.2
 
-# 3. 🌟Loss Function
+## 3. 🌟Loss Function
 
-# 4. 🌟🌟🌟🌟Optimizer
+## 4. 🌟🌟🌟🌟Optimizer
 
 > 动量后面的Admw那些据估计忘了
 
-# 5. 🌟🌟🌟🌟🌟回顾Attention
+## 5. 🌟🌟🌟🌟🌟回顾Attention
 
 $$
 Attention(Q, K, V ) = softmax(\frac{Q·K^T}{\sqrt{d_k}})V
 $$
 
-## 5.1 为啥Attention的时候要除以$\sqrt{d_k}$？
+### 5.1 为啥Attention的时候要除以$\sqrt{d_k}$？
 
 当 dk*d**k* 的值比较小的时候，两种点积机制(additive 和 Dot-Product)的性能相差相近，当 dk*d**k* 比较大时，additive attention 比不带scale 的点积attention性能好。 我们怀疑，对于很大的 dk*d**k* 值，点积大幅度增长，将softmax函数推向具有极小梯度的区域。 为了抵消这种影响，我们缩小点积 1dk√*d**k*1 倍。
 
-## 5.2 为啥拆多头？为啥效果好了？
+### 5.2 为啥拆多头？为啥效果好了？
 
-## 5.3 Cross Multi-Head Attention？
+### 5.3 Cross Multi-Head Attention？
 
 首先，Self- Attention与传统的Attention机制非常的不同：传统的Attention是基于source端和target端的隐变量（hidden state）计算Attention的，得到的结果是源端（source端）的每个词与目标端（target端）每个词之间的依赖关系。
     其次，Self-Attention首先分别在source端和target端进行自身的attention，仅与source input或者target input自身相关的Self -Attention，以捕捉source端或target端自身的词与词之间的依赖关系；然后再把source端的得到的self -Attention加入到target端得到的Attention中，称作为**Cross-Attention**，以捕捉source端和target端词与词之间的依赖关系。
 
-##  5.4 Mask Multi-Head Attention
+###  5.4 Mask Multi-Head Attention
 
 ​    与Encoder的Multi-Head Attention计算原理一样，只是多加了一个mask码。mask 表示掩码，它对某些值进行掩盖，使其在参数更新时不产生效果。Transformer 模型里面涉及两种 mask，分别是 padding mask 和 sequence mask。
 
-## 5.5 Masking实现机理
+### 5.5 Masking实现机理
 
 具体的做法是，把**这些位置**的值**加上一个非常大的负数(负无穷)**，这样的话，经过 softmax，这些位置的概率就会接近0！
 
-## 5.6 MQA和GQA
+### 5.6 MQA和GQA
 
 MQA多头共用K，V
 
 GQA将头分组，组内共用KV
 
-# 6. 🌟🌟🌟K-V Cache
+## 6. 🌟🌟🌟K-V Cache
 
-# 7. 🌟🌟🌟常见的正则化方法
+## 7. 🌟🌟🌟常见的正则化方法
 
 # 二. 课堂记录
 
-# 🌟0301-0302
-
-## 1. 记录
-
-## 2. 疑惑
+## 🌟0301-0302
 
 - 0301:input序列长度大于embedding时候的seq_len时, input的输入序列会按照seq_len进行切割拼接到batch上吗? (老师讲了encoder时候input不足seq_len时候使用mask然后想问的另一个问题)
 - 0302:`K-V cache`时候当预测下一个时间步的时候与之前的做Attention的时候, 中途会取出cache里的K—V吗还是只取出里面的K还是只在最后一个结束后才整体取一次 (我想问的也就是在一个batch或者一个seq的访存情况, 每一个时间步都需要访问cache一次吗)
 - 是直接使用缓存的填充矩阵还是需要拿出缓存数据(读还是取)
 
 
+## 0308-0309——PyTorch
 
-# 0308-0309——PyTorch
-
-## 记录
 
 > 提及: 混合精度训练
 
@@ -159,9 +153,9 @@ _parameters()送参数给优化器的时候将所有的parameters送到optim, �
 
 ---
 
-# 0315-0316（续PyTorch）
+## 0315-0316（续PyTorch）
 
-## 1.1 回顾
+### 1.1 回顾
 
 1.Tensor类和重要属性
 2.autograd，动态图
@@ -177,7 +171,7 @@ _parameters,_buffers哪些有哪些没有
 
 一系列方法具体情况
 
-## 1. 2问题合集
+### 1.2 问题合集
 
 1. 在讲transformer的padding mask的时候想到，如果输入seq_len大于了定义的seq_len，会直接截断还是截断再拼接到下一个batch
 2. 在sequence mask的时候，忘了要问啥了
@@ -191,7 +185,7 @@ dataset会迭代的将所有数据加载到内存吗，然后dataloader再一批
 
 > 是后者，也就是I/O的时候，batch_size太小的话会增加I/O负担
 
-## 2.1 torch.optim
+### 2.1 torch.optim
 
 参数传param的时候的传递和打包方式
 
@@ -205,7 +199,7 @@ self.param_groups
 
 def load_state_dict
 
-## 2.2 learning rate 调整方案
+### 2.2 learning rate 调整方案
 
 Torch.optim.lr_scheduler
 
@@ -213,7 +207,7 @@ Torch.optim.lr_scheduler
 
 ==状态字典==，三个地方见过，都类似，模型保存时候需要有
 
-## 2.3 模型保存和加载
+### 2.3 模型保存和加载
 
 ==动态图==
 
@@ -229,11 +223,11 @@ Torch.optim.lr_scheduler
 
 ![image-20250316113313785](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250316113313785.png)
 
-## 3.1 Dataset and Dataloader
+### 3.1 Dataset and Dataloader
 
 > 只学习pytorch的，后续自己补hf的那些
 
-## 4 NLP
+### 4.1 NLP
 
 GPT：自监督训练得到预训练模型（采用迁移学习）
 
@@ -241,7 +235,7 @@ Bert：完形填空
 
 迁移学习：预训练+微调（微调的数据集就是专业领域的数据集）
 
-## 4.1Bert
+### 4.2 Bert
 
 1.两个任务：MLM和NSP
 

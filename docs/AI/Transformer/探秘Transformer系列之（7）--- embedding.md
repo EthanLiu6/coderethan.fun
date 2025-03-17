@@ -737,7 +737,7 @@ Word2Vec的总体思路是：一个词的意义可以被它所出现的上下文
 
 从这一点出发，我们不再去统计一个单词在一个大文档里面出现的次数，而是统计一个单词有哪些单词以多高的频率出现在它的上下文（一般来说，我们以当前单词为中心，把它前后N个单词叫做它的上下文）。有了上下文的定义之后，我们就去构造一个_word-context_的矩阵，进而获取单词对应的向量。
 
-Word2Vec的第一篇论文是[Efficient Estimation of Word Representations in Vector Space](https://link.zhihu.com/?target=http%3A//arxiv.org/pdf/1301.3781.pdf)。论文题目提到了表示论（Representation Theory），这属于数学中抽象代数的一个分支。表示论将抽象代数结构中的元素“表示”成向量空间上的线性变换，并研究这些代数结构上的模，藉以研究结构的性质。表示论的妙用在于能将抽象代数问题转为较容易解决的线性代数问题。例如Word2Vec论文中"Additive Compositionality" 有一些论述，模型中学到的词和短语表现出一种线性结构，这使得使用简单的向量运算进行精确的类比推理成为可能，同时一些简单的元素级别的向量表示加法可以有意义地组合单词。比如：“apple”与“apples”之间的几何向量关系大致与“car”与“cars”之间的关系相同，这意味着我们可以将“apples”计算为“apple + car - cars”。这实际上就是构建了这样的二元运算群到线性空间的映射，使得它们在线性空间的运算和群的操作同构。
+Word2Vec的第一篇论文是[Efficient Estimation of Word Representations in Vector Space] link:https://link.zhihu.com/?target=http%3A//arxiv.org/pdf/1301.3781.pdf。论文题目提到了表示论（Representation Theory），这属于数学中抽象代数的一个分支。表示论将抽象代数结构中的元素“表示”成向量空间上的线性变换，并研究这些代数结构上的模，藉以研究结构的性质。表示论的妙用在于能将抽象代数问题转为较容易解决的线性代数问题。例如Word2Vec论文中"Additive Compositionality" 有一些论述，模型中学到的词和短语表现出一种线性结构，这使得使用简单的向量运算进行精确的类比推理成为可能，同时一些简单的元素级别的向量表示加法可以有意义地组合单词。比如：“apple”与“apples”之间的几何向量关系大致与“car”与“cars”之间的关系相同，这意味着我们可以将“apples”计算为“apple + car - cars”。这实际上就是构建了这样的二元运算群到线性空间的映射，使得它们在线性空间的运算和群的操作同构。
 
 #### 架构
 
@@ -1137,12 +1137,12 @@ NV-Embed采用`Mean-Pool` 的方式。
 
 [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations\[C\]// International Conference on Learning Representations](https://openreview.net/pdf?id=H1eA7AEtvS)  
 [Distributed Representations of Words and Phrases and their Compositionality](https://arxiv.org/pdf/1310.4546.pdf)  
-[Echo embedding: 把文本重复两次，自回归模型就能生成更高质量的embedding](http%3A//mp.weixin.qq.com/s%3F__biz%3DMzk0NzMwNjU5Nw%3D%3D%26mid%3D2247485173%26idx%3D2%26sn%3Db12a004f059653df01c2e196598856ab%26chksm%3Dc379affff40e26e974af66260b4ef256b366563ce349afb0518cfb7d890a2a1ee62d9c45d010%26scene%3D21%23wechat_redirect)，  
+<!-- [Echo embedding: 把文本重复两次，自回归模型就能生成更高质量的embedding](http%3A//mp.weixin.qq.com/s%3F__biz%3DMzk0NzMwNjU5Nw%3D%3D%26mid%3D2247485173%26idx%3D2%26sn%3Db12a004f059653df01c2e196598856ab%26chksm%3Dc379affff40e26e974af66260b4ef256b366563ce349afb0518cfb7d890a2a1ee62d9c45d010%26scene%3D21%23wechat_redirect)   -->
 [Efficient Estimation of Word Representations in Vector Space](http%3A//arxiv.org/pdf/1301.3781.pdf)  
 [Embeddings等技术解析](https://developer.baidu.com/article/details/3321350)J  
 [https://arxiv.org/pdf/2307.16645.pdf](https%3A//arxiv.org/pdf/2307.16645.pdf)  
 [Is Cosine-Similarity of Embeddings Really About Similarity?](https://arxiv.org/pdf/2403.05440v1)  
-[LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders](https%3A//arxiv.org/abs/2404.05961)  
+<!-- [LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders](https%3A//arxiv.org/abs/2404.05961)   -->
 [LLM2Vec: 改造Decoder-only LLM以生成高质量text embedding](https://zhuanlan.zhihu.com/p/698500026) 泽龙  
 [RetroMAE v2: Duplex Masked Auto-Encoder For Pre-Training Retrieval-Oriented Language Models](https://arxiv.org/pdf/2211.08769.pdf)  
 [RetroMAE: Pre-Training Retrieval-oriented Language Models Via Masked Auto-Encoder](https://arxiv.org/pdf/2205.12035.pdf)  
@@ -1164,7 +1164,7 @@ NV-Embed采用`Mean-Pool` 的方式。
 [如何快速提高大模型的向量表征效果能力？](https://zhuanlan.zhihu.com/p/692009751) [刘聪NLP](https://www.zhihu.com/people/LiuCongNLP)  
 [如何用MoE进行Embedding的获取](https://mp.weixin.qq.com/s?__biz=MjM5MTIyMjkzMg==&mid=2247487883&idx=1&sn=7a75e2623ab6eefb01542a6f565ef39e&chksm=a7d839affceef910ee55de928e7f1f3e07fb245fd1787c4e39255361b52aea9fc2245f919d6e&mpshare=1&scene=1&srcid=0115HUT1nHNTVjtK4Cs0s0ES&sharer_shareinfo=5aacf37ff3f4deedc75ba7399e2f6b75&sharer_shareinfo_first=5aacf37ff3f4deedc75ba7399e2f6b75#rd) Alex \[算法狗\]  
 [如何看待瘦身成功版BERT——ALBERT？](https://www.zhihu.com/question/347898375/answer/838577174)  
-[微软E5-mistral-7b-instruct: 站在LLM肩膀上的text embedding](http%3A//mp.weixin.qq.com/s%3F__biz%3DMzk0NzMwNjU5Nw%3D%3D%26mid%3D2247485118%26idx%3D1%26sn%3Da634f29bf58b6bf586dd51f5dc42bab6%26chksm%3Dc379afb4f40e26a2c4d6f0eba5bb8132d482b9be3141742ab38af01e5dfd9b2b9cf6f5bf6034%26scene%3D21%23wechat_redirect)  
+<!-- [微软E5-mistral-7b-instruct: 站在LLM肩膀上的text embedding](http%3A//mp.weixin.qq.com/s%3F__biz%3DMzk0NzMwNjU5Nw%3D%3D%26mid%3D2247485118%26idx%3D1%26sn%3Da634f29bf58b6bf586dd51f5dc42bab6%26chksm%3Dc379afb4f40e26a2c4d6f0eba5bb8132d482b9be3141742ab38af01e5dfd9b2b9cf6f5bf6034%26scene%3D21%23wechat_redirect)   -->
 [最小熵原理（六）：词向量的维度应该怎么选择？](https://kexue.fm/archives/7695) 苏剑林  
 [残差网络解决了什么，为什么有效？](https://zhuanlan.zhihu.com/p/80226180)  
 [深入解析 Transformers 框架（五）：嵌入（Embedding）机制和 Word2Vec 词嵌入模型实战](https://mp.weixin.qq.com/s?__biz=MzkyNzY5NDQ1MA==&mid=2247484594&idx=1&sn=8414bc51fac04691558f60c8b6e04854&chksm=c3086ca1c34e258f515553b212d4add120d7dc06fbd817d313d69f8f25ef3ae4bb0a7988b392&mpshare=1&scene=1&srcid=0121ZrtH5pCyQeVHyS0aBtub&sharer_shareinfo=a0760a35b4620e797992021a010daae4&sharer_shareinfo_first=a0760a35b4620e797992021a010daae4#rd) \[老牛同学\]  

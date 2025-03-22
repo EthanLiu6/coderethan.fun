@@ -177,9 +177,9 @@ export default defineConfig({
 
     // 顶部导航栏
     nav: [
-      { text: '主页', link: '/' },
-      { text: '博客指南', link: '/guide/' },
-      { text: '生活与算法', link: '/生活与算法/' },
+      // { text: '主页', link: '/' },
+      // { text: '博客指南', link: '/guide/' },
+      // { text: '生活与算法', link: '/生活与算法/' },
       {text: 'AI',
         items: [
           {text: 'DL基础理论', link: '/AI/deep_learning_theory/'},
@@ -191,42 +191,42 @@ export default defineConfig({
       {
         text: '计算机学科内容',  // 合并J为一个大类
         items: [
-          { text: '计算机知识', link: '/IT-learning/408知识/'},
-          { text: 'C++基础',  link: '/IT-learning/c++基础/'},
+          { text: '408知识', link: '/IT-learning/408/'},
+          { text: 'C++基础',  link: '/IT-learning/c++/'},
           { text: 'Java后端', link: '/IT-learning/Java/'},
           { text: 'Linux技术',  link: '/IT-learning/Linux/'},
-          { text: '计算机图形学',  link: '/IT-learning/计算机图形学/'},
+          // { text: '计算机图形学',  link: '/IT-learning/计算机图形学/'},
         ]
       },
 
-      {
-        text: '自我提升',
-        items: [
-          { text: '阅读', link: '/improve/阅读/' },
-          { text: '金融投资', link: '/improve/金融投资/' },
-        ]
-      },
+      // {
+      //   text: '自我提升',
+      //   items: [
+      //     { text: '阅读', link: '/improve/阅读/' },
+      //     { text: '金融投资', link: '/improve/金融投资/' },
+      //   ]
+      // },
       {
         text: '求职面试',
         items: [
-          { text: 'Java面经', link: '/面试求职/Java面经/' },
-          { text: '场景问题', link: '/面试求职/场景问题/' },
-          { text: '经验分享', link: '/面试求职/经验分享/' },
-          { text: '算法岗', link: '/面试求职/算法岗/' },
+          { text: 'Java面经', link: '/Job_Interview/Java/' },
+          // { text: '场景问题', link: '/面试求职/场景问题/' },
+          // { text: '经验分享', link: '/面试求职/经验分享/' },
+          { text: '算法岗', link: '/Job_Interview/Algorithm_post/' },
         ],
       },
       {
         text: '其他维护',
         items: [
-          { text: '站点更新', link: '/update/更新日志' },
-          { text: '问题清单', link: '/技术问题清单/' },
+          { text: '站点更新', link: '/update/update_log' },
+          { text: '问题清单', link: '/question_list/' },
         ]
       },
       {
         text: '感悟和日常',
         items: [
-          { text: '站长感悟', link: '/我的感悟/' },
-          { text: '站长旧版博客', link: 'https://EthanLiu6.github.io' },
+          { text: '站长感悟', link: '/my_think/' },
+          { text: '旧版博客', link: 'https://EthanLiu6.github.io' },
         ]
       },
     ], // end导航栏

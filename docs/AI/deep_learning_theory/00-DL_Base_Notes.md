@@ -328,3 +328,23 @@ Bert：完形填空
 ![image-20250322144600625](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250322144600625.png)
 
 ![image-20250322145503812](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250322145503812.png)
+
+### 3.1 GPT
+
+GPT-1 已经出现zero-shot迹象，层归一化还是之前的post-norm
+
+GPT-2 零样本学习，即zero-shot，层归一化有点变化，改成per-Norm
+
+> 相当于纯预训练
+
+![image-20250322170432945](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250322170432945.png)
+
+GPT-3 few-shot（给案例），发现模型规模可以提高能力，最后实现了无需微调到达一些较好的任务处理，架构基本和GPT-2一致，但加了一个新的‘交替的稠密和稀疏的’Attention，余弦衰减的学习率策略，batch-size从小变大，再加上0.1的权重衰减正则化
+
+> Few-shot, one-shot, zero-shot
+>
+> • **Few-Shot（FS）：** 模型在推理时给出K个任务示例作为上下文信息，同时提供任务的自然语言描述，但不允许模型进行权重更新。通常将K设置在10到100的范围内，以适应模型的上下文窗口。
+>
+> • **One-Shot（1S）：** 模型在推理时通过提供一个任务示例作为上下文信息，同时还有任务的自然语言描述。这种方式最接近于人类在解决某些任务时所使用的方式。
+>
+> • **Zero-Shot（0S）：** 不提供任何上下文信息，模型只给出一个描述任务的自然语言指令。

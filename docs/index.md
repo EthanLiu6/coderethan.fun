@@ -11,8 +11,8 @@ hero:
   
   actions:
     - theme: brand
-      text: 站点使用指南🔎
-      link: /guide/
+      text: 面经🔎
+      link: /Job_ Interview/
     - theme: alt
       text: 旧版博客📔
       link: https://EthanLiu6.github.io 
@@ -28,9 +28,9 @@ features:
     link: '/IT-learning/'
   - icon: 
       src: /icons/improve.svg
-    title: 自我提升
+    title: 我的感悟
     details: 除了IT，还有一些更nice的模块。比如投资, 阅读等
-    link: '/improve/'
+    link: '/my_think/'
   - icon: 
       src: /icons/explore.svg
     title: 人工智能

@@ -1,7 +1,7 @@
 #                    码医森
 
 >  关于Ethan博客介绍
-
+::: tip 博客结构已进行过调整，下列为旧版结构
 ## 主页:
 
 ![image-20241023181446284](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20241023181446284.png)

@@ -44,6 +44,14 @@
 
 再细化来说，Q是序列中当前位置的词向量，K和V是序列中的所有位置的词向量。
 
+> 我们用淘宝搜索来类比，可以帮助我们对这些矩阵有更好的理解。假如我们在淘宝上进搜索”李宁鞋“。
+>
+> - query是你在搜索栏输入的查询内容。
+> - key是在页面上返回的商品描述、标题，其实就是淘宝商品数据库中与候选商品相关的关键字。
+> - value是李宁鞋商品本身。因为一旦依据搜索词（query）搜到了匹配的商品描述、标题（key），我们就希望具体看看商品内容。
+>
+> 通过使用这些 QKV 值，模型可以计算注意力分数，从而确定每个token在生成预测时应从其它token那里获得多少关注。
+
 ##### 2. 掩码自注意力
 
 掩码自注意力层或者说因果自注意力层（Causal attention layer）可以在解码阶段捕获当前词与已经解码的词之间的关联。它是对解码器的输入序列执行类似全局自注意力层的工作，但是又有不同之处。
@@ -70,7 +78,21 @@ Transformer是自回归模型，它逐个生成文本，然后将当前输出文
 
 ![img](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/1850883-20250218212308574-176454824-20250318112643142.jpg)
 
-### 2.3 执行流程
+
+
+### 2.3 FFN层
+
+> 在多个自注意力头捕获输入token之间的不同关系后，拼接的输出将通过FFN（feed-forward network）层进行处理，以增强模型的表示能力。下图展示了如何使用 FFN层将自注意力表示投影到更高的维度，以增强模型的表示能力。
+
+
+
+FFN层由两个线性变换组成，线性变换 中间有一个激活函数。第一个线性变换将输入的维度从`512` 增加到四倍`2048`。第二个线性变换将维度降回到 的原始大小`512`，以确保后续层接收到维度一致的输入。
+
+与自注意力机制在序列中彼此交流不同，FFN对序列中每个元素都独立计算，因此不会进行元素间的信息交换（元素间的互动完全靠自注意力）。这样有助于在注意力层进行元素间的信息交换之后，让每个元素消化整合自己的信息，为下一层再次通过自注意力交换信息做好准备。
+
+
+
+### 2.4 执行流程
 
 我们再来结合模型结构图来简述推理阶段的计算流程，具体如下图所示。
 
@@ -89,7 +111,13 @@ Transformer是自回归模型，它逐个生成文本，然后将当前输出文
 
 ![img](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/1850883-20250209144327875-1762767210.jpg)
 
-## 3. 补充
+### 3. 补充
 
-**论文"Attention is not all you need"指出如果没有skip connection（residual connection-残差链接）和MLP，自注意力网络的输出会朝着一个rank-1的矩阵收缩。即，skip connection和MLP可以很好地阻止自注意力网络的这种”秩坍塌（秩坍塌）退化“。这揭示了skip connection，MLP对self-attention的不可或缺的作用**
+1. **论文"Attention is not all you need"指出如果没有skip connection（residual connection-残差链接）和MLP，自注意力网络的输出会朝着一个rank-1的矩阵收缩。即，skip connection和MLP可以很好地阻止自注意力网络的这种”秩坍塌（秩坍塌）退化“。这揭示了skip connection，MLP对self-attention的不可或缺的作用**
 
+2. 在Transformer架构图中，Inputs和Outputs的上面分别有一个Embedding模块，每个模块都是由两个子模块组合而成。
+
+- Inputs相关的embedding模块包括Input Embedding和Positional Encoding。
+  - Input Embedding负责把token编码。
+  - Positional Encoding负责给token加入位置信息。实际操作中，Transformer会一次性接收整个输入句子的嵌入矩阵。这样做的好处是可以并行操作，但是劣势是缺少位置信息，比如模型无法区分“我爱你”和“爱你我” 。Positional Encoding就负责给每个词增加位置信息。
+- Outputs相关的embedding模块包括Output Embedding + Positional Encoding：与上面类似，不再赘述。

@@ -183,7 +183,8 @@ export default defineConfig({
       {text: 'AI',
         items: [
           {text: 'DL基础理论', link: '/AI/deep_learning_theory/'},
-          {text: 'Transformer系列', link: '/AI/Transformer/'}
+          {text: 'Transformer系列', link: '/AI/Transformer/'},
+          {text: '分布式训练', link: '/AI/distribute_training/'}
         ]
       },
       // { text: 'AI', link: '/AI/' },
@@ -209,7 +210,7 @@ export default defineConfig({
       {
         text: '求职面试',
         items: [
-          { text: 'Java面经', link: '/Job_ Interview/Java/' },
+          { text: 'Java面经', link: '/Job_Interview/Java/' },
           // { text: '场景问题', link: '/面试求职/场景问题/' },
           // { text: '经验分享', link: '/面试求职/经验分享/' },
           { text: '算法岗', link: '/Job_Interview/Algorithm_post/' },

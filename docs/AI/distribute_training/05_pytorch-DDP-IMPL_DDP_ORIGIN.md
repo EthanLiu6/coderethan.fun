@@ -1,0 +1,1 @@
+- [参考链接](https://github.com/Elvin-Ma/pytorch_guide/tree/main/11-distribute_guide/ddp_demo)

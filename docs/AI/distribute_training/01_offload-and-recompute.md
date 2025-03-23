@@ -191,7 +191,7 @@ if __name__ == "__main__":
 
 ## 2.2 Megatron-LM optimizer cpu offloading
 
-- [code addr](./01_coding)
+- [code addr](/root/projects/Megatron-LM/tests/unit_tests/test_optimizer_cpu_offloading.py)
 
 # 3 gradient accumulate
 ```python

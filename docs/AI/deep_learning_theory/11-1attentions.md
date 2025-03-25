@@ -46,10 +46,10 @@ $$Attention(Q, K, V)=softmax(\frac{Q K^{T}}{\sqrt{d_{k}}}) V $$
 
 **思考：如何找到两个向量间的相关性** <br>
 
-- 向量相关性1：Additive** <br>
+- 向量相关性1：Additive <br>
 ![figure5](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/attention-figure5.jpg)
 
-- 向量相关性2：Dot Product** <br>
+- 向量相关性2：Dot Product <br>
 ![figure6](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/attention-figure6.jpg)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在实践中Dot-Product 的速度更快、更节省空间，因为它可以使用高度优化的矩阵乘法代码来实现。<br>

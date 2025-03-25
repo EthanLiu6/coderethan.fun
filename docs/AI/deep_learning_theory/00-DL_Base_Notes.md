@@ -12,7 +12,9 @@ LayerNorm有助于稳定训练过程并提高收敛性。它的工作原理是�
 
 **思考：在训练和推理时有何不同？？？**
 
+### 1.2 为啥不用BN来做NLP？
 
+文本长度不确定，而在LN层可以
 
 ## 2. Activation🌟🌟🌟
 
@@ -46,11 +48,13 @@ $$
 Attention(Q, K, V ) = softmax(\frac{Q·K^T}{\sqrt{d_k}})·V
 $$
 
-当 dk*d**k* 的值比较小的时候，两种点积机制(additive 和 Dot-Product)的性能相差相近，当 dk*d**k* 比较大时，additive attention 比不带scale 的点积attention性能好。 我们怀疑，对于很大的 dk*d**k* 值，点积大幅度增长，将softmax函数推向具有极小梯度的区域。 为了抵消这种影响，我们缩小点积 1dk√*d**k*1 倍。
+当 $d_k$ 的值比较小的时候，两种点积机制(additive 和 Dot-Product)的性能相差相近，当 dk*d**k* 比较大时，additive attention 比不带scale 的点积attention性能好。 我们怀疑，对于很大的 dk*d**k* 值，点积大幅度增长，将softmax函数推向具有极小梯度的区域。 为了抵消这种影响，我们缩小点积 1dk√*d**k*1 倍。
 
 ### 5.2 为啥拆多头？为啥效果好了？
 
-- 提取到了更多的信息（类似CNN的multi- kernel），数据分布组与组之间独立
+- 提取到了更多的信息（类似CNN的multi- kernel），数据分布组与组（子空间）之间独立
+
+  > Multi-head attention允许模型的不同表示子空间联合**关注不同位置**的信息。 如果只有一个attention head，它的平均值会削弱这个信息。
 - 减少计算量（应该可以在这一层减少原来的$\frac{1}{Num_{head}}$倍）
 
 ### 5.3 Cross Multi-Head Attention？
@@ -72,7 +76,11 @@ MQA多头共用K，V
 
 GQA将头分组，组内共用KV
 
-### 5.x 其他
+## 5.7 位置编码
+
+- attention并不会获取到位置信息，只有俩俩的相关性
+
+### x.x 其他
 
 - 工程中将QKV的权重矩阵直接放在一块，shape就是原来$(embedding\_dim, embedding\_dim)$到 $(embedding\_dim, embedding\_dim \times 3)$
 
@@ -82,7 +90,22 @@ GQA将头分组，组内共用KV
 
 - Attention的时候是否需要对自身做？自回归的时候应当下一次token尽可能不是上一个词，所以矩阵对角线是否应当是趋于零的？
 
+- 句子间的相似度计算方式有哪些？Attention为啥采用点积？
 
+  > addivation
+  >
+  > dot-dart （为啥点积运算可以计算相似度）
+  >
+  > ![image-20250325155249034](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250325155249034.png)
+
+- FFN的时候为啥dim要✖️4放大纬度
+- encoder其实是特征提取的一个过程
+- 为啥encoder的input和out（context vector）的纬度大小要一样？（因为有原始论文有6个encoder Layer或者cell）
+- encoder层的attention会注意到前面的词吗？
+- encoder的特征聚合是在什么时候
+- 特征压缩
+- softmax的时候是对attention结果的哪个纬度进行归一化（词与词相关性考虑），为啥归一化？（词与词之间的联系性，因为还要点乘value，所以应当是一个权重）
+- mask的大小？（batch_size, seq_len, seq_len），应该和attention score一样，因为要码谁就跟谁一样
 
 ## 6. 🌟🌟🌟K-V Cache
 
@@ -93,9 +116,11 @@ GQA将头分组，组内共用KV
 - Dropout
 - 
 
+## 8. Bert🌟🌟🌟🌟
 
+输入后的对15%的三个处理
 
-
+bert有三个编码，分别是
 
 # 二. 课堂记录
 

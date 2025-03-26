@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # 一. DL_Base_Notes
 
 ## 1. Normalization🌟🌟🌟🌟🌟
@@ -76,9 +80,29 @@ MQA多头共用K，V
 
 GQA将头分组，组内共用KV
 
-## 5.7 位置编码
+## 5.7 position embedding🌟🌟🌟🌟🌟
 
-- attention并不会获取到位置信息，只有俩俩的相关性
+- attention并不会获取到输入序列（token与token之间）的位置信息，只有俩俩的相关性
+
+- 最初的Transformer使用的是**绝对位置编码**，即：直接对第$batch$个输入序列的第$k$个token向量$X^{batch}_k$加上一个位置编码$P_k$，然后做同样的attention
+
+- 关于编码向量（或者矩阵）的生成，采用三角位置编码方式，对于第奇数($2i+1$)个token采用cos，对于偶数采用sin
+
+  > $p_{k,2i+1}=cos(\frac{k}{10000^{2i/d}})$
+  >
+  > $p_{k,2i}=sin(\frac{k}{10000^{2i/d}})$
+  >
+  > **其中：d表示位置向量的维度（应该也是输入次向量的embedding维度）**
+
+- 其实提取到位置信息是靠变量$k$获取的，相当于是seq index
+
+- **自己绘图发现该方案存在一定问题：** 当embedding dim**大于某一范围的**的时候，对应编码信息会向0-1分布。我测试的[2, 32, 64]，当dim 在[12, 20]发生某种变化，然后超过20开始趋向0-1分布，其实从公式也可以明显发现这种现象
+
+  <img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250326170819283.png" alt="image-20250326170819283" style="zoom:40%;" />
+
+  ![image-20250326170943850](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250326170943850.png)
+
+- 该位置编码是在做Attention之前进行的，与embedding后的向量合并，再做attention
 
 ### x.x 其他
 
@@ -104,7 +128,7 @@ GQA将头分组，组内共用KV
 - encoder层的attention会注意到前面的词吗？
 - encoder的特征聚合是在什么时候
 - 特征压缩
-- softmax的时候是对attention结果的哪个纬度进行归一化（词与词相关性考虑），为啥归一化？（词与词之间的联系性，因为还要点乘value，所以应当是一个权重）
+- softmax的时候是对attention结果的哪个纬度进行归一化（词与词相关性考虑，应该是掩码后矩阵分行向量），为啥归一化？（词与词之间的联系性，因为还要点乘value，所以应当是一个权重）
 - mask的大小？（batch_size, seq_len, seq_len），应该和attention score一样，因为要码谁就跟谁一样
 
 ## 6. 🌟🌟🌟K-V Cache
@@ -121,6 +145,48 @@ GQA将头分组，组内共用KV
 输入后的对15%的三个处理
 
 bert有三个编码，分别是
+
+
+
+## 9. 位置编码总结
+
+### 9.1 绝对位置编码
+
+> 在Attention之前进行位置编码
+>
+> 对qkv都做位置编码
+
+- 三角（固定）位置编码
+
+- 可学习位置编码
+
+  > 把编码矩阵当作可学习参数进行训练（大小与embedding后的输入一致）
+  >
+  > Bert模型就是采用的这种编码
+
+### 9.2 相对位置编码
+
+**不使用每个 token 的绝对位置，而是表示 token 之间的相对位置。这样做的好处是，模型不需要对每个位置使用单独的编码，而是通过计算相对距离来捕捉位置信息**。
+
+> 在Attention之后进行位置编码
+>
+> 只对q和k做位置编码，对value不做，value是结果或者说是token本身的特征信息
+>
+> 根据数学原理推导的（依赖之前的位置编码公式来推导，**也就是由绝对位置编码启发而来**）
+>
+> 采用分桶思想（T5的思想）
+
+### 9.3 旋转位置编码**——**RoPE（大模型常用）
+
+### ![image-20250322144241104](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250322144241104.png)
+
+> 通过构建数学模型
+>
+> 根据想要得到的效果进行反推得到
+
+
+
+
 
 # 二. 课堂记录
 

@@ -111,11 +111,12 @@ export default defineConfig({
     plugins: [
       // add plugin
       AutoSidebar({
-        ignoreList: ["README.md"], // 忽略文件夹
+        ignoreList: [/node_modules/, "README.md"], // 忽略文件夹
         path: "/docs/", // 侧边栏扫描路径(也就是所有笔记所在的目录)
         ignoreIndexItem: true, // 忽略首页
-        collapsed: false, // 是否启用折叠，默认为false展开
+        collapsed: true, // 是否启用折叠，默认为false展开
         deletePrefix: "docs", // 删除路径前缀
+        
         sideBarResolved(data) {
           // 接收完整的侧边栏对象以进行自定义修改
           return data;
@@ -182,9 +183,11 @@ export default defineConfig({
       // { text: '生活与算法', link: '/生活与算法/' },
       {text: 'AI',
         items: [
-          {text: 'DL基础理论', link: '/AI/deep_learning_theory/'},
-          {text: 'Transformer系列', link: '/AI/Transformer/'},
-          {text: '分布式训练', link: '/AI/distribute_training/'}
+          {text: 'DL基础理论', link: '/AI/01_deep_learning_theory/'},
+          {text: '分布式训练', link: '/AI/02_distribute_training/'},
+          {text: 'Transformer个人梳理', link: '/AI/03_Transformer/'},
+          {text: 'DL个人笔记', link: '/AI/04_some_notes/'},
+
         ]
       },
       // { text: 'AI', link: '/AI/' },
@@ -231,6 +234,15 @@ export default defineConfig({
         ]
       },
     ], // end导航栏
+
+      vite: {
+        plugins: [
+          AutoSidebar({
+            collapsed: true, // 默认折叠所有文件夹
+            // 其他可选配置
+          })
+        ]
+      },
 
     /**
         // 导航栏跳转后的侧边栏

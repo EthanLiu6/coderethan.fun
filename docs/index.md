@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: 面经🔎
-      link: /Job_ Interview/
+      link: /Job_Interview/
     - theme: alt
       text: 旧版博客📔
       link: https://EthanLiu6.github.io 

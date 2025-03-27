@@ -1,8 +1,0 @@
-# 03-Bert理解
-
-## 预训练
-
-- masked language model 用来提取token向量
-- next sentence prediction 用来提取文本向量
-
-![image-20250327181838063](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250327181838063.png)

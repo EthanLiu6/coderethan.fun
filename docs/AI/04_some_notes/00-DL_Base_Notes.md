@@ -230,7 +230,7 @@ bert有三个编码，分别是
 
 **不使用每个 token 的绝对位置，而是表示 token 之间的相对位置。这样做的好处是，模型不需要对每个位置使用单独的编码，而是通过计算相对距离来捕捉位置信息**。
 
-> 在Attention之后进行位置编码
+> 在Attention时候进行位置编码
 >
 > 只对q和k做位置编码，对value不做，value是结果或者说是token本身的特征信息
 >
@@ -248,7 +248,7 @@ bert有三个编码，分别是
 >
 > 根据想要得到的效果进行反推得到
 
-
+[哔站通俗讲解](https://www.bilibili.com/video/BV1CQoaY2EU2?spm_id_from=333.788.player.switch&vd_source=d0891b7353b29ec2c50b1ea1f7004bfa)
 
 ## 10. 模型的参数和状态
 

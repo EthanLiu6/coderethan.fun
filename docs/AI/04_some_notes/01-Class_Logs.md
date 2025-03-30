@@ -378,10 +378,412 @@ Pytorch2.6开始更加新的重计算
 
 
 
+## 0329-0330
+
+### 1. 续分布式训练：
+
+DP
+
+DDP
+
+- Ring All Reduce
+- 分桶进行，bucket
+- 一个进程单独占用一张卡
+- 通信成本是2P(2*param)
+
+nccl通信后端
+
+- Gather相当于concat吗，reduce相当于进行了point wise操作吗
+
+  > 是的
+  >
+  > B2sixERQSe/b
+
+watch -n 
+
+分布式
+
+- 数据采样
+- ddp要xxx（忘了）
+- init group
+
+### 2. ==ZeRO策略==系列（分布式训练加速）（原理和案例）
+
+beepspeed框架
+
+ZeRO=>优化内存=》增大batchsize
+
+==属于数据并行的范畴，优化了optim==
+
+显存主要被谁占用？==〉optim的state，而且在混合精度训练时候，在optim的时候是fp32
+
+dp和mp没有解决这一问题
+
+> 回顾不足
+
+实现了计算和内存双丰收
+
+==将状态states分区==（有三个级别或者三个优化阶段）
+
+- 分区：optim状态，梯度分区，prarm分区
+
+- 即：Pos，optim state + g，optim state + g + p
+
+通信量：
 
 
-### 7.
 
-1.之前看那个state_dict最后存储的key和value都是tenser的设计策略是不是跟这儿有关系
 
-2.多机的时候是不是也需要ssh 密钥组网
+
+分布式这块还需要讲哪些（如果多的话可以先跳过一些困惑）
+
+
+
+### 3. pytorch对zero3的实现——==FSDP==
+
+FSDP有俩个版本，pytorch2.4之前是v1，24后大更新v2，能够很好的进行3d并行
+
+
+
+#### magatore
+
+
+
+### 4. TP张量并行
+
+- 对param切分
+- 行并行和列并行
+- ==megareoa==
+  - 上面的方法增大了通信量
+  - 模型并行
+  - 列切分和行切分的时候合并再做激活，对MLP的layer1的weight做列切，进行分别激活，（这儿减少了一次通信）然后对layer做行切，最后再做All Reduce
+  - 与Transformer非常适合结合使用
+  - 拆头的时候如果切列数不跟head一样数目，会有点点问题（但实际不可能有这种情况）
+
+### 5. PP
+
+> 调度策略做得好就厉害
+
+#### 之前的：
+
+> setp的batch：group batch
+
+- Gpipe：Micro Batch=> 1. 执行完forward才能backward， 2. pipeline flash（backward执行完才参数更新）
+
+> Micro Batch分的越细，bubble越小
+
+- PipeDream：采用异步更新，一个时间步实现forward后会进行backward，即1f2b，（后面会有两种选择，有b先b，没有就f）
+
+> 有时候weight可能不一样（有些是已经更新后的），但是多保留了一些冗余weight
+>
+> 工程上并没有使用
+
+- PipeDream 2BW
+
+- ==PipeDream Flash==：有明显的一个分界线，来做参数更新
+
+> 工程使用
+
+- megator对上面这种做了优化：interleaved 1f1b
+
+> 拆storage的粒度更小
+>
+> 通讯次数变多
+
+
+
+#### 近两年：
+
+> 上面的还是可用的
+
+- zero- bubble
+
+> 将backward拆成俩（b和w）
+>
+> 一个计算weight的grad，一个计算activation的grad（backward的目的是啥，过程是啥）
+>
+> pipe flash不再是竖线，而是斜线
+
+- Dual pipe（DeepSeek ）
+
+
+
+### 6. SP（sequence P）
+
+TP做完之后对seq做SP
+
+对activation做sp
+
+两个通信g和g‘，
+
+> g，这个增加了一点通信量
+>
+> g'之前是All Reduce，现在使用Reduce- Scatter，而且通信量减少了一点（后面的参数量即显存减少了）
+>
+> 总的通信量与TP的AllReduce一样
+
+
+
+### 7. 3D并行
+
+deepspeed的3D
+
+- 2个大DP（All Reduce），每个DP里面是4组PP实现（跨节点send和resv），每组PP切成4个TP（All Reduce）
+
+
+
+### 8. CP（context P）
+
+==flash Attention==
+
+长文本，会对Activation大量增加，weight只是很少的一部分
+
+
+
+**EP**
+
+> EP阶段应当不再有zero策略，Attention需要，MLP做成了EP，除了MLP部分，其他参数的并行是一致的
+
+
+
+----
+
+### 9. MoE（稀疏MoE）
+
+- **Gshard**
+
+  - 专家（expert）
+
+    放在mlp层，也就是mlp
+
+    专家主要是区分token，而不是sentence
+
+  - 路由（router）
+
+    哪个token发到哪个专家
+
+  - 最后合并根据index，通信用All to All
+
+  - 关键点
+
+    1.跟seq大小无关
+
+    2.位置关系靠All to All
+
+    3.计算参数量会减少，有个分发，所以参数量差不多
+
+  - 存在问题：专家拥堵=> 专家分布不均匀（负载不均衡），某些得不到训练
+
+  - keep top K策略
+
+  - token choice
+    - ==辅助损失==（**负载均衡损失**）
+      - 可能会影响模型性能（因为是一种强制平衡性）
+
+  - 专家容量
+
+    1
+
+    2
+
+- **switch transformer**
+
+- **mixtral**
+
+- **DeepSeek MoE**
+
+
+
+如何把MoE和别的并行结合起来
+
+### 10. 优化策略总结
+
+
+
+### 11. 监督微调sft
+
+- 指令调优
+
+### 12. RLHF（强化学习）
+
+==instruct GPT==
+
+PPO（强化学习算法，奖励模型）
+
+工程化落地
+
+### 13.微调工具
+
+LoRA、PEFT
+
+样本数据+数据加载，
+
+### 14.推理模型（后训练时代）
+
+Long CoT（长思维链）
+
+### 15. LLM发展脉络
+
+### 16. DeepSeek
+
+- V1、v2、v3
+- R1 zero、R1：消除了SFT（并没有完全消除），完全采用RLHF（==不使用PPO，采用改进的GRPO==），但是性能有点点慢
+- DPO
+- PPO
+- GRPO
+- MLA（前注意）
+- MoE
+- MTP（多token预测）
+- 等等等
+- MLA（前注意力）
+- YaRN（旋转位置编码）
+- 长思维链
+
+==补充：60min==
+
+
+
+
+
+----
+
+
+
+大模型的工作流通常分为多个模块，每个模块涉及不同的工具和技术栈。以下是 **大模型（LLM）开发与部署的完整工作流**，并标注了 **常见负责模块** 和 **工具链**，方便你明确团队的分工范围。
+
+## **一、大模型核心工作流**
+
+### **1. 数据准备（Data Preparation）**
+- **任务**：数据收集、清洗、标注、预处理。
+- **工具**：
+  - **爬虫/API**：Scrapy、BeautifulSoup、Apify。
+  - **清洗/标注**：Pandas、OpenRefine、Prodigy、Label Studio。
+  - **存储**：HDFS、AWS S3、Milvus（向量数据库）。
+- **输出**：高质量训练数据集（如JSONL、Parquet格式）。
+- **负责模块**：若团队负责数据工程，需重点优化数据质量。
+
+---
+
+### **2. 预训练（Pretraining）**
+- **任务**：在大规模无监督数据上训练基础模型。
+- **工具**：
+  - **框架**：Megatron-LM（NVIDIA）、DeepSpeed（微软）、ColossalAI。
+  - **分布式训练**：PyTorch + FSDP（全分片数据并行）、NCCL（GPU通信）。
+  - **硬件**：NVIDIA A100/H100集群、TPU Pods。
+- **输出**：基础模型（如GPT-3架构的Checkpoint）。
+- **负责模块**：通常由大厂/研究团队完成，中小团队可直接用开源模型（如LLaMA、Falcon）。
+
+---
+
+### **3. 微调（Fine-tuning）**
+- **任务**：在领域数据上调整模型。
+- **方法**：
+  - **全参数微调**：适合数据充足场景。
+  - **高效微调**：LoRA、QLoRA（节省显存）。
+- **工具**：
+  - **框架**：Hugging Face Transformers、Axolotl。
+  - **库**：PEFT（参数高效微调）、trl（RLHF）。
+- **输出**：领域适配模型（如医疗、法律垂直模型）。
+- **负责模块**：若团队专注垂直领域，这是核心模块。
+
+---
+
+### **4. 对齐与强化学习（Alignment & RLHF）**
+- **任务**：让模型符合人类偏好。
+- **方法**：
+  - **RLHF**：基于奖励模型（Reward Model）的PPO训练。
+  - **DPO**：直接偏好优化（更简单高效）。
+- **工具**：
+  - **标注**：Scale AI、Amazon Mechanical Turk。
+  - **训练**：trl（Transformer Reinforcement Learning）。
+- **输出**：对齐后的模型（如ChatGPT风格）。
+- **负责模块**：若需产品化，对齐是关键。
+
+---
+
+### **5. 模型评估（Evaluation）**
+- **任务**：评测模型性能。
+- **指标**：
+  - **通用能力**：MMLU、Big-Bench。
+  - **垂直领域**：自定义评估集（如代码生成、问答准确率）。
+- **工具**：
+  - **评估库**：lm-evaluation-harness、HELM。
+  - **自动化测试**：Pytest + CI/CD（GitHub Actions）。
+- **输出**：模型性能报告。
+- **负责模块**：所有团队需参与，但可自动化。
+
+---
+
+### **6. 推理部署（Inference & Deployment）**
+- **任务**：高效部署模型提供服务。
+- **优化技术**：
+  - **量化**：GGUF（llama.cpp）、AWQ。
+  - **推理框架**：vLLM、TensorRT-LLM、TGI（Hugging Face）。
+  - **硬件**：NVIDIA T4/A10G（低成本推理）。
+- **部署方式**：
+  - **API服务**：FastAPI + Docker + Kubernetes。
+  - **边缘设备**：ONNX Runtime（移动端）。
+- **负责模块**：若团队负责落地，这是重点。
+
+---
+
+### **7. 应用开发（Application Integration）**
+- **任务**：将模型集成到产品中。
+- **场景**：
+  - **聊天机器人**：LangChain、LlamaIndex。
+  - **RAG**：Elasticsearch + 向量数据库（Weaviate）。
+- **工具**：
+  - **后端**：Flask/FastAPI。
+  - **前端**：Gradio、Streamlit。
+- **负责模块**：应用团队核心工作。
+
+---
+
+## **二、团队常见分工与工具链**
+| **模块**         | **负责团队**    | **核心工具/技术**              |
+| ---------------- | --------------- | ------------------------------ |
+| 数据准备         | 数据工程团队    | Pandas、Prodigy、AWS S3        |
+| 预训练           | 大模型研究团队  | Megatron-LM、DeepSpeed         |
+| 微调             | 算法团队        | Hugging Face、PEFT、QLoRA      |
+| 对齐（RLHF/DPO） | 算法+产品团队   | trl、Scale AI                  |
+| 评估             | 算法+QA团队     | lm-evaluation-harness          |
+| 推理部署         | 工程/DevOps团队 | vLLM、TensorRT-LLM、Kubernetes |
+| 应用开发         | 产品+全栈团队   | LangChain、FastAPI、Gradio     |
+
+---
+
+## **三、如何选择负责模块？**
+1. **资源较少团队**：  
+   - 聚焦 **微调+应用开发**（如基于LLaMA做垂直领域模型）。  
+   - 使用开源工具（Hugging Face + vLLM）。  
+
+2. **研究型团队**：  
+   - 参与 **预训练/对齐**（需大量算力）。  
+   - 工具：Megatron-LM + DeepSpeed。  
+
+3. **工程化团队**：  
+   - 主攻 **推理优化与部署**（如量化、低延迟API）。  
+   - 工具：TensorRT-LLM + Triton Inference Server。  
+
+---
+
+## **四、典型案例**
+- **ChatGPT类产品**：  
+  ```mermaid
+  graph LR
+    A[数据收集] --> B[预训练] --> C[RLHF对齐] --> D[API部署] --> E[应用集成]
+  ```
+- **企业知识库**：  
+  ```mermaid
+  graph LR
+    A[内部数据清洗] --> B[LoRA微调] --> C[RAG系统] --> D[FastAPI服务]
+  ```
+
+---
+
+## **五、关键挑战**
+- **算力需求**：预训练需千卡GPU集群（可考虑云服务如AWS/AutoDL）。  
+- **数据质量**：清洗和标注成本高（可借助合成数据工具）。  
+- **部署延迟**：需优化推理框架（如vLLM的PagedAttention）。  
+
+根据团队目标（研究/产品/工程），选择核心模块并匹配工具链。如果需要具体模块的深入方案（如RLHF或量化），可以进一步探讨！ 🚀

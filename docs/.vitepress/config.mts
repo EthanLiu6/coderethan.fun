@@ -229,20 +229,21 @@ export default defineConfig({
       {
         text: '感悟和日常',
         items: [
+          { text: '关于我', link: '/about_me/'},
           { text: '站长感悟', link: '/my_think/' },
           { text: '旧版博客', link: 'https://EthanLiu6.github.io' },
         ]
       },
     ], // end导航栏
 
-      vite: {
-        plugins: [
-          AutoSidebar({
-            collapsed: true, // 默认折叠所有文件夹
-            // 其他可选配置
-          })
-        ]
-      },
+      // vite: {
+      //   plugins: [
+      //     AutoSidebar({
+      //       collapsed: true, // 默认折叠所有文件夹
+      //       // 其他可选配置
+      //     })
+      //   ]
+      // },
 
     /**
         // 导航栏跳转后的侧边栏

@@ -14,11 +14,11 @@ hero:
       text: 面经🔎
       link: /Job_Interview/
     - theme: alt
-      text: 旧版博客📔
-      link: https://EthanLiu6.github.io 
+      text: 站点更新📔
+      link: /update/update_log
     - theme: alt
-      text: 站长邮箱📮
-      link: mailto:16693226842@163.com
+      text: 关于站长🙈
+      link: /about_me/
 
 features:
   - icon:

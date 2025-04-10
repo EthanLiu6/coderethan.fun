@@ -1,5 +1,7 @@
 # 回顾和复习整理DL
 
+
+
 ## 00. python基础（未补）
 
 > 抽空补充
@@ -8,6 +10,8 @@
 - 装饰器
 - callable
 - 
+
+
 
 ## 01. 激活函数🌟🌟🌟
 
@@ -179,7 +183,6 @@ $$
 💡 实际意义：
 
 - Softmax 的导数不是独立的，每个输出值的梯度都跟其它的有关。
-- 因此，softmax 在反向传播时，会出现“梯度耦合”。
 
 ###  2. 简单总结（未优化）：
 
@@ -205,6 +208,8 @@ $$
 - softmax输入的shape和梯度的shape不一样大吗？参数更新的时候又是怎样子的？
 
 ---
+
+
 
 
 
@@ -300,11 +305,11 @@ torch.nn
 
 - 在训练和推理时有何不同？
 
-    > pytorch的模型有两种模式，在module模块里面有个‘training’属性，也有对应的API，里面明确指出了这个
+    > pytorch的模型有两种模式，在module模块里面有个`training`属性，也有对应的API，里面明确指出了这个
     >
-    > 在BatchNorm采用训练计算的结果（E和Var），应用到测试或者推理的时候
+    > 在BatchNorm采用训练时计算的结果（E和Var），应用到测试或者推理的时候
     >
-    > 在Dropout后续会说，训练会drop掉，但推理不会，会成（1-rate）
+    > 在Dropout后续会说，训练会drop掉，但推理不会，会改成（1-rate）
 
     ```python
     def train(self: T, mode: bool = True) -> T:
@@ -338,9 +343,18 @@ torch.nn
 
 **补充部分：**
 
-- **DYT**(Transformers without normlization)
+- **DyT**(Transformers without normlization)
 
     [Transformers without normlization](https://yiyibooks.cn/arxiv/2503.10622v1/index.html)
+    $$
+    Norm:\ \gamma * \frac{(_x - E_{_x})}{\sqrt (Var_{_x})} + \beta
+    $$
+
+    $$
+    DyT:\ \gamma * Tanh(\alpha * x) + \beta
+    $$
+
+    ![image-20250410151122973](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250410151122973.png)
 
 - **Pre-Norm（大模型使用）和Post-Norm**
 
@@ -354,12 +368,11 @@ torch.nn
 
     
 
-    
-    $$
-    公式1:PostNorm(x)=x+LayerNorm(FeedForward(x+LayerNorm(Attention(x))))
-    \\\\
-    公式2:PreNorm(x)=x+FeedForward(LayerNorm(x))+Attention(LayerNorm(x))
-    $$
+$$
+公式1:PostNorm(x)=x+LayerNorm(FeedForward(x+LayerNorm(Attention(x))))
+\\\\
+公式2:PreNorm(x)=x+FeedForward(LayerNorm(x))+Attention(LayerNorm(x))
+$$
 
 
 
@@ -562,6 +575,8 @@ $$
 - 如何实现训练和推理不同的情况？（相当于加锁或者if else）
 
 ---
+
+
 
 
 

@@ -180,7 +180,7 @@ $$
 
 - 论文所给伪代码
 
-    <img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250502183926711.png" alt="image-20250502183926711" style="zoom:33%;" />
+    <img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250502183926711.png" alt="image-20250502183926711"  />
 
 - 具体尝试我暂时还未进行，就先不试了
 
@@ -231,7 +231,7 @@ $$
 |  **Transformer XL**  |  Pre-Norm  |
 | **原始 Transformer** | Post-Norm  |
 
-<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250502185123075.png" alt="image-20250502185123075" style="zoom:50%;" />
+<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250502185123075.png" alt="image-20250502185123075"  />
 
 - 选择
     任务复杂度: 简单任务用 PostNorm，复杂任务用 PreNorm。
@@ -273,7 +273,7 @@ $$
 
 - 效果
 
-    <img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250502190717337.png" alt="image-20250502190717337" style="zoom:50%;" />
+    <img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250502190717337.png" alt="image-20250502190717337"  />
 
 ### 3.4 Instance Norm
 

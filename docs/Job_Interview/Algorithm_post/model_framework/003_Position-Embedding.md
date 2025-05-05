@@ -143,6 +143,8 @@ plt.show()
 
 ![Figure_1](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/Figure_1.png)
 
+
+
 ## 4. 长文本外推技术
 
 > 随机位置法、线性插值法

@@ -69,7 +69,7 @@ $$
 
     > 有没有觉得跟DyT的实现效果有点像
     
-    <img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250505160309198.png" alt="image-20250505160309198" style="zoom:35%;"/>
+    <img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250505160309198.png" alt="image-20250505160309198" />
 
 **思考：**
 
@@ -166,7 +166,7 @@ $$
 
 
 
-<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250505165029524.png" alt="image-20250505165029524" style="zoom:50%;" />
+<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250505165029524.png" alt="image-20250505165029524"  />
 
 - Hard Swish
 

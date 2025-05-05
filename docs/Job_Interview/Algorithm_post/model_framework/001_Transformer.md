@@ -4,7 +4,7 @@
 
 中英文对照论文：[Attention Is All You Need](https://yiyibooks.cn/arxiv/1706.03762v7/index.html)
 
-<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250425144838781.png" alt="image-20250425144838781" style="zoom:30%;" />
+<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250425144838781.png" alt="image-20250425144838781"  />
 
 ### 1.1 编码器
 
@@ -56,7 +56,7 @@ $$
 
 Attention可以描述为将query和一组 **key-value对** 映射到输出(output)，其中query、key、value和 output都是向量(vector)。 输出为value的加权和，其中分配给每个value的权重通过query与相应key的兼容函数来计算。
 
-<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250425145018652.png" alt="image-20250425145018652" style="zoom:50%;" />
+<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250425145018652.png" alt="image-20250425145018652"  />
 $$
 Attention(Q, K, V)=softmax(\frac{Q K^{T}}{\sqrt{d_{k}}}) V
 $$
@@ -66,7 +66,7 @@ $$
 
 
 
-<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250425150546293.png" alt="image-20250425150546293" style="zoom:50%;" />
+<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250425150546293.png" alt="image-20250425150546293"  />
 $$
 MultiHead(Q, K, V) = Concat(head_{1}, \ldots, head_{h}) W^{O}
 $$
@@ -85,7 +85,7 @@ $$
 
 将encoder的key和value与decoder的query进行attention，论文好像没有明确指出这一块内容
 
-<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250425151609839.png" alt="image-20250425151609839" style="zoom:50%;" />
+<img src="https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/image-20250425151609839.png" alt="image-20250425151609839"  />
 
 ### 2.4 FFN
 

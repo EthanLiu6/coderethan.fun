@@ -1,3 +1,9 @@
 temp.md
 run.sh
+node_modules/
+.DS_Store
 
+# 构建输出
+
+docs/.vitepress/cache/
+docs/.vitepress/.temp/

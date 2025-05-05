@@ -1,4 +1,5 @@
-# 1 Convolution
+1 Convolution
+
 ## 1.1 Conv2D
 - 示意图<br>
 ![figure](https://coderethan-1327000741.cos.ap-chengdu.myqcloud.com/blog-pics/op-figure1.jpg)
@@ -180,7 +181,7 @@ def Layernorm(x, gamma, beta):
     eps = 1e-5
 
     x_mean = np.mean(x, axis=(1, 2, 3), keepdims=True)
-    x_var = np.var(x, axis=(1, 2, 3), keepdims=True0)
+    x_var = np.var(x, axis=(1, 2, 3), keepdims=True)
     x_normalized = (x - x_mean) / np.sqrt(x_var + eps)
     results = gamma * x_normalized + beta
     return results
